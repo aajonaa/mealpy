@@ -26,7 +26,7 @@ class DevSCA(Optimizer):
     >>>     return np.sum(solution**2)
     >>>
     >>> problem_dict = {
-    >>>     "bounds": FloatVar(lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
+    >>>     "bounds": FloatVar(n_vars=30, lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
     >>>     "minmax": "min",
     >>>     "obj_func": objective_function
     >>> }
@@ -97,7 +97,7 @@ class OriginalSCA(DevSCA):
     >>>     return np.sum(solution**2)
     >>>
     >>> problem_dict = {
-    >>>     "bounds": FloatVar(lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
+    >>>     "bounds": FloatVar(n_vars=30, lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
     >>>     "minmax": "min",
     >>>     "obj_func": objective_function
     >>> }
@@ -218,12 +218,12 @@ class QleSCA(DevSCA):
     >>>     return np.sum(solution**2)
     >>>
     >>> problem_dict = {
-    >>>     "bounds": FloatVar(lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
+    >>>     "bounds": FloatVar(n_vars=30, lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
     >>>     "minmax": "min",
     >>>     "obj_func": objective_function
     >>> }
     >>>
-    >>> model = SCA.QleSCA(epoch=1000, pop_size=50, alpha=0.1, gama=0.9)
+    >>> model = SCA.QleSCA(epoch=1000, pop_size=50)
     >>> g_best = model.solve(problem_dict)
     >>> print(f"Solution: {g_best.solution}, Fitness: {g_best.target.fitness}")
     >>> print(f"Solution: {model.g_best.solution}, Fitness: {model.g_best.target.fitness}")

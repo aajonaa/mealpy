@@ -27,12 +27,12 @@ class OriginalWarSO(Optimizer):
     >>>     return np.sum(solution**2)
     >>>
     >>> problem_dict = {
-    >>>     "bounds": FloatVar(lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
+    >>>     "bounds": FloatVar(n_vars=30, lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
     >>>     "minmax": "min",
     >>>     "obj_func": objective_function
     >>> }
     >>>
-    >>> model = WarSO.OriginalWarSO(epoch=1000, pop_size=50, rr=0.1)
+    >>> model = WarSO.OriginalWarSO(epoch=1000, pop_size=50)
     >>> g_best = model.solve(problem_dict)
     >>> print(f"Solution: {g_best.solution}, Fitness: {g_best.target.fitness}")
     >>> print(f"Solution: {model.g_best.solution}, Fitness: {model.g_best.target.fitness}")
@@ -69,9 +69,7 @@ class OriginalWarSO(Optimizer):
         Args:
             epoch (int): The current iteration
         """
-        pop_sorted, indices = self.get_sorted_population(self.pop, self.problem.minmax, return_index=True)
-        self.wl = self.wl[indices]
-        self.wg = self.wg[indices]
+        pop_sorted = self.get_sorted_population(self.pop, self.problem.minmax)
         com = self.generator.permutation(self.pop_size)
         for idx in range(0, self.pop_size):
             r1 = self.generator.random()

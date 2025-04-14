@@ -30,12 +30,12 @@ class OriginalGTO(Optimizer):
     >>>     return np.sum(solution**2)
     >>>
     >>> problem_dict = {
-    >>>     "bounds": FloatVar(lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
+    >>>     "bounds": FloatVar(n_vars=30, lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
     >>>     "minmax": "min",
     >>>     "obj_func": objective_function
     >>> }
     >>>
-    >>> model = GTO.OriginalGTO(epoch=1000, pop_size=50, A=0.4, H=2.0)
+    >>> model = GTO.OriginalGTO(epoch=1000, pop_size=50)
     >>> g_best = model.solve(problem_dict)
     >>> print(f"Solution: {g_best.solution}, Fitness: {g_best.target.fitness}")
     >>> print(f"Solution: {model.g_best.solution}, Fitness: {model.g_best.target.fitness}")
@@ -148,7 +148,7 @@ class Matlab102GTO(Optimizer):
     >>>     return np.sum(solution**2)
     >>>
     >>> problem_dict = {
-    >>>     "bounds": FloatVar(lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
+    >>>     "bounds": FloatVar(n_vars=30, lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
     >>>     "minmax": "min",
     >>>     "obj_func": objective_function
     >>> }
@@ -267,7 +267,7 @@ class Matlab101GTO(Optimizer):
     >>>     return np.sum(solution**2)
     >>>
     >>> problem_dict = {
-    >>>     "bounds": FloatVar(lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
+    >>>     "bounds": FloatVar(n_vars=30, lb=(-10.,) * 30, ub=(10.,) * 30, name="delta"),
     >>>     "minmax": "min",
     >>>     "obj_func": objective_function
     >>> }
